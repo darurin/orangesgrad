@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orangs</title>
+</head>
+<style>
+    #canvas{
+        border: 5px solid rgb(255, 116, 3);
+        background-color: lemonchiffon ;
+    }
+</style>
+<body> 
+    <br><br><br><br>
+    <center>
+    <canvas id="canvas" width="640" height="750">
+        <script>
+            function ellipse(x, y, radx, rady, rot, sAngle, eAngle, flip, color, gradient){
+                var canvas = document.getElementById('canvas');
+                var line = canvas.getContext('2d');
+                line.lineWidth = 2.0;
+                line.strokeStyle = 'orange';
+                line.beginPath();
+                if(flip){
+                    line.save();
+                    line.scale(-1, 1);
+                    x = -x;
+                }
+                line.ellipse(x, y, radx, rady, rot, sAngle, eAngle);
+                line.strokeStyle = 'red'
+                line.stroke();
+                var Lgradient = line.createLinearGradient(x - radx, y, x + radx, y);
+                Lgradient.addColorStop(0, color);
+                Lgradient.addColorStop(1, gradient);
+                line.fillStyle = Lgradient;
+                line.fill();
+                line.restore();
+            }
+            function text(x, y, text, font) {
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+                ctx.font = font;
+                ctx.fillStyle = 'deeppink';
+                ctx.fillText(text, x, y);
+            }
+            function highlight (x, y, radx, rady, rot, sAngle, eAngle, flip, color){
+                var canvas = document.getElementById('canvas');
+                var high = canvas.getContext('2d');
+                high.lineWidth = 2.0;
+                high.strokeStyle = 'orange';
+                high.beginPath();
+                if(flip){
+                    high.save();
+                    high.scale(-1, 1);
+                    x = -x;
+                }
+                high.ellipse(x, y, radx, rady, rot, sAngle, eAngle);
+                high.fillStyle = color;
+                high.fill();
+                high.restore();
+            }
+
+            ellipse(320, 190, 95, 88, Math.PI / 35, 0, 5 * Math.PI, false, 'orange', '#d86819');
+            ellipse(190, 400, 90, 83, Math.PI / 50 , 0, 5 * Math.PI, false, 'darkorange', 'chocolate');
+            ellipse(450, 400, 100, 95, Math.PI / 65, 0, 5 * Math.PI, false, 'coral', 'indianred');
+            ellipse(150, 308, 30, 8, Math.PI / 13, 0, 5 * Math.PI, false, 'olivedrab', 'darkgreen');
+            ellipse(213, 305, 35, 10, Math.PI / 13, 0, 5 * Math.PI, true, 'olivedrab', 'darkgreen');
+            ellipse(280, 90, 35, 10, Math.PI / 13, 0, 5 * Math.PI, false, 'olivedrab', 'darkgreen');
+            ellipse(347, 90, 35, 10, Math.PI / 13, 0, 5 * Math.PI, true, 'olivedrab', 'darkgreen');
+            ellipse(410, 290, 43, 12, Math.PI / 13, 0, 5 * Math.PI, false, 'olivedrab', 'darkgreen');
+            ellipse(487, 294, 38, 11, Math.PI / 13, 0, 5 * Math.PI, true, 'olivedrab', 'darkgreen');
+            text(90, 655, 'Orange(s)', '110px Gratina')
+            highlight(135, 360, 40, 13, Math.PI / 4, 0, 5 * Math.PI, true, 'lightsalmon');
+            highlight(260, 150, 35, 13, Math.PI / 4, 0, 5 * Math.PI, true, 'lightpink');
+            highlight(390, 360, 40, 15, Math.PI / 3.5, 0, 5 * Math.PI, true, 'lightsalmon');
+        </script>
+    </canvas>
+    </center>
+</body>
+</html>
